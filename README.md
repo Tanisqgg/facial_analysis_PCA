@@ -1,74 +1,64 @@
-Facial Analysis using PCA
-This project implements a facial analysis pipeline using Principal Component Analysis (PCA). It provides functions to load and center datasets, compute covariance matrices, perform eigen decomposition, reconstruct images, and visualize the results. The code also includes an option to perturb images by adding Gaussian noise.
+# Facial Analysis using PCA
 
-Features
-Dataset Loading and Centering: Load facial datasets stored in .npy format and center the data by subtracting the mean.
+This project implements Principal Component Analysis (PCA) to perform facial image analysis, including image reconstruction and perturbation experiments. It's ideal for applications in facial recognition, compression, and exploratory data analysis.
 
-Covariance Matrix Computation: Calculate the covariance matrix of the centered dataset.
+## Description
 
-Eigen Decomposition: Compute eigenvalues and eigenvectors for the covariance matrix. You can either extract a fixed number of components or select those that explain a desired proportion of the variance.
+The repository includes Python scripts for loading, preprocessing, and analyzing facial image data. Key functionalities provided:
 
-Image Projection and Reconstruction: Project images onto the principal component space and reconstruct them.
+- **Dataset Preprocessing:** Loading and centering facial image datasets.
+- **Covariance Matrix Computation:** Creating covariance matrices necessary for PCA.
+- **Eigendecomposition:** Computing eigenvalues and eigenvectors from covariance matrices.
+- **Variance-Based Selection:** Selecting eigenvectors based on explained variance.
+- **Image Projection and Reconstruction:** Reducing dimensionality and reconstructing images from PCA components.
+- **Image Perturbation:** Testing the robustness of PCA reconstruction by adding Gaussian noise.
 
-Visualization: Display the original high-resolution, original, and reconstructed images using Matplotlib.
+## Files Included
 
-Image Perturbation: Optionally perturb the reconstruction by adding Gaussian noise.
+- `facial_analysis.py`: Core functions for dataset processing, PCA computations, image reconstruction, and perturbation.
+- `test_file.py`: Example script demonstrating the usage of functionalities provided in `facial_analysis.py`.
+- `.npy` data files (`celeba_60x50.npy` and `celeba_218x178x3.npy`): Facial image datasets for testing.
 
-Requirements
-Python 3.6 or higher
+## Requirements
 
-NumPy
+- Python 3.x
+- NumPy
+- SciPy
+- Matplotlib
 
-SciPy
+Install dependencies using:
 
-Matplotlib
-
-You can install the required libraries using pip:
-
-bash
-Copy
+```bash
 pip install numpy scipy matplotlib
-Getting Started
-Clone the repository:
+```
 
-bash
-Copy
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
-Prepare your dataset:
+## Usage
 
-Ensure you have a dataset in .npy format containing facial image data. The script expects the data to be formatted appropriately for the provided functions.
+To use the provided scripts, execute the following from the project root:
 
-Using the Module:
+```bash
+python test_file.py
+```
 
-Import the functions from facial_analysis.py in your Python script or Jupyter Notebook. For example:
+This script demonstrates:
 
-python
-Copy
-import facial_analysis as fa
+- Dataset loading and centering
+- Covariance matrix calculation
+- PCA eigendecomposition
+- Image projection, reconstruction, and perturbation
 
-# Load and center the dataset
-data_centered = fa.load_and_center_dataset('your_dataset.npy')
+## Example Outputs
 
-# Compute the covariance matrix
-cov_matrix = fa.get_covariance(data_centered)
+Running `test_file.py` will:
 
-# Extract the top 10 eigenvalues and eigenvectors
-Lambda, U = fa.get_eig(cov_matrix, k=10)
+1. Display original high-resolution images.
+2. Show PCA-reconstructed images.
+3. Illustrate the effect of perturbations with Gaussian noise.
 
-# For a given image, project it and reconstruct using the top eigenvectors
-reconstructed_image = fa.project_and_reconstruct_image(image, U)
-Visualization
-To visualize the original and reconstructed images, use the provided function:
+## Contributing
 
-python
-Copy
-fig, ax1, ax2, ax3 = fa.display_image(high_res_image, original_image, reconstructed_image)
-fig.show()
-Make sure your image data is reshaped correctly as the function expects specific dimensions.
+Contributions are welcome! Feel free to submit issues, suggest improvements, or send pull requests.
 
-Contributing
-Contributions are welcome! Please open an issue or submit a pull request with any enhancements, bug fixes, or suggestions.
+## License
 
-License
-This project is licensed under the MIT License. See the LICENSE file for more details.
+This project is licensed under the MIT License.
